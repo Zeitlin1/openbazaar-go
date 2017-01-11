@@ -5,12 +5,7 @@ if [ ! -z "$TRAVIS_TAG" ] &&
   echo "This will deploy!"
 
   # Cross-compile for all platforms
-  export CGO_ENABLED=1
-  docker pull karalabe/xgo-latest
-  go get github.com/karalabe/xgo
-  mkdir dist/ && cd dist/
-  xgo --targets=windows/386,windows/amd64,darwin/amd64,linux/386,linux/amd64,linux/arm ../
-  chmod +x *
+  ./build.sh
 
   # Copy libwinpthread-1.dll
   cp .travis/libwinpthread-1.dll dist/
